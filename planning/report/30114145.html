@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>30114145.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<div style="text-align: center; font-size:160%;">
+    <strong>知能プログラミング演習Ⅱ 課題２前半</strong>
+</div>
+<div style="text-align: center; font-size:130%;">
+<strong>30114145 渡辺圭</strong>
+</div>
+<div style="text-align: center; font-size:130%;">
+    <strong>2022年 10月 25日</strong>
+</div>
+<p>自己評価：B
+評価理由：最後の発展問題が動作するものは作成できたが不完全な状態なため</p>
+<h4 id="1%E8%AA%B2%E9%A1%8C%E3%81%AE%E8%AA%AC%E6%98%8E">1.課題の説明</h4>
+<p><strong>課題2a1:</strong> 単一化処理を理解するために，次のプログラムを写経せよ．クラス EX1 を実行せよ．
+<strong>課題2a2:</strong> マッチングとオペレータを理解するために，次のプログラムを写経せよ．クラス EX2 を実行せよ．プログラムの動作には先の課題で写経したプログラムも利用する必要がある．
+<strong>課題2a3:</strong> 前向きプランニングを理解するために，次のプログラムを写経せよ．クラス EX3 を実行せよ．プログラムの動作には先の課題で写経したプログラムも利用する必要がある．
+<strong>課題2a4:</strong> 猿とバナナ問題を表現するための MonkeyBananaProblem クラスを作成せよ．Problem クラスを継承せよ．また，課題 2a3 で写経した前向きプランナを用いて解け．メインクラスを EX4 とせよ．
+<strong>課題2a5:</strong> リスト 11 を編集して後ろ向きプランナを作成し，猿とバナナ問題を解け．クラス名を BackwardPlannerとせよ．メインクラスを EX5 とせよ．プログラム提出用のディレクトリ名を ex2a5 とせよ．本課題の実行に必要な全プログラムをこのディレクトリに格納すること．レポートにはプログラムの重要部分と実行例を掲載し文章で説明せよ．プログラムが完成しない場合でも，1) 想定される推論過程を図示しつつ説明し，2) 作成途中のプログラムを提出し，さらに，3) 難しかった点を考察することで最低限の基準を満たしていることとする．推論過程（推論連鎖）の図示の方法としては，教科書図 3.11（教科書 p.106）や図 3.12（教科書 p.118）を参考にすると良い．（ヒント）後ろ向き推論では前向き推論とは異なり，部分的なマッチングを使用する点に注意すること.</p>
+<h4 id="2%E8%AA%B2%E9%A1%8C2a1">2.課題2a1</h4>
+<pre class="hljs"><code><div>単一化処理を理解するために，次のプログラム(EX1.java, Predicate.java, Bind.java, Utils.java)を写経せよ．クラス EX1 を実行せよ．
+</div></code></pre>
+<p>#####　実行例
+以下はクラスEX1を実行した結果です.</p>
+<pre class="hljs"><code><div>1| C on B == ?x on ?y |--&gt; {?x=C, ?y=B}
+2| C on B == clear ?x |--&gt; {?x=C, ?y=B}
+3| C on B == ontable ?x |--&gt; failed
+4| ?x on ?y --&gt; C on B
+5| clear ?x --&gt; clear C
+</div></code></pre>
+<h5 id="%E8%AA%AC%E6%98%8E">説明</h5>
+<h4 id="2%E8%AA%B2%E9%A1%8C2a2">2.課題2a2</h4>
+<pre class="hljs"><code><div>マッチングとオペレータを理解するために，次のプログラム(EX2.java, Matcher.java, Operator.java)を写経せよ．クラス EX2 を実行せよ．プログラムの動作には先の課題で写経したプログラムも利用する必要がある．
+</div></code></pre>
+<p>#####　実行例
+以下はクラスEX2を実行した結果です.</p>
+<pre class="hljs"><code><div>1| [B on A, C on B, clear C, ontable A, handEmpty]
+2| NAME: #2: remove ?x from on top ?y
+IF: [?x on ?y, clear ?x, handEmpty]
+ADD: [clear ?y, holding ?x]
+DEL: [?x on ?y, clear ?x, handEmpty]
+3| NAME: #2: remove ?x_1 from on top ?y_1
+IF: [?x_1 on ?y_1, clear ?x_1, handEmpty]
+ADD: [clear ?y_1, holding ?x_1]
+DEL: [?x_1 on ?y_1, clear ?x_1, handEmpty]
+4| [{?x_1=C, ?y_1=B}]
+5| #2: remove C from on top B
+6| [B on A, ontable A, clear B, holding C]
+7| []
+8| [{?y_1=C}]
+</div></code></pre>
+<h5 id="%E8%AA%AC%E6%98%8E">説明</h5>
+<h4 id="3%E8%AA%B2%E9%A1%8C2a3">3.課題2a3</h4>
+<pre class="hljs"><code><div>前向きプランニングを理解するために，次のプログラムを写経せよ．クラス EX3 を実行せよ．
+</div></code></pre>
+<p>#####　実行例
+以下はクラスEX3を実行した結果です.</p>
+<pre class="hljs"><code><div>***** This is a plan! *****
+#2: remove C from on top B
+#4: put down C on the table
+#2: remove B from on top A
+#1: place B on C
+#3: pick up A from the table
+#1: place A on B
+FinalVisitingNodeNumber:79
+</div></code></pre>
+<h5 id="%E8%AA%AC%E6%98%8E">説明</h5>
+<ul>
+<li>クラスの説明
+<ul>
+<li>Predicate
+Predicateクラスは述語を管理するクラスでisVarメソッドで?を先頭に持つ変数かどうかを判定する。equalsメソッドは述語が同じものものかどうかを判定する。</li>
+<li>Bind
+BindクラスはMap変数を持ち、Unifyメソッドで変数が等しいかどうか判別する。</li>
+<li>Operator
+Operatorクラスはロボットアームが行う操作を管理するクラスで変数に操作名、操作を行える条件、追加される属性、削除される属性をもち、これらの属性を逸脱しない中で目標まで到達する命令セットを探す。</li>
+<li>Matcher
+MatcherクラスはMatchメソッドでPredicateから一致するものを探す。</li>
+<li>Node
+NodeクラスはStateと終点、それと親ノードなどの変数を持つクラスで目的を満たす選択肢を保持しており、このクラス変数のStateが終点と等しければ目的をみたしている。</li>
+<li>Utils
+Utilsクラスはクラス変数の和差などを求めるメソッドをもつ</li>
+<li>ForwardPlanner
+ForwardPlannerクラスは前向き探索を行うクラスです。Plannerクラスを継承して前向き探索を行う処理を具体化しています。</li>
+<li>BlockWorldProblem
+Problemインターフェースからロボットアーム問題を具体化するクラスです。</li>
+</ul>
+</li>
+<li>クラス間の関係</li>
+</ul>
+<pre><code class="language-mermaid"><div class="mermaid">classDiagram
+class Predicate {
+    +List&lt;String&gt;: terms
+
+    +Predicate() Predicate
+    +clone() Predicate
+    +hashCode() String
+    +equals() boolean
+    +size() int
+    +isVar() boolean
+    +isGround() boolean
+}
+
+class Bind {
+    -Bind$: UNSATISFIED
+    +Map&lt;String, String&gt;: vars
+    +Bind() Bind
+    +isSatisfied() boolean
+    +clone() Bind
+    +hashCode() int
+    +equals() boolean
+    +toString() String
+    +merged() Bind
+    +bind() boolean
+    +unified() Bind
+    +unify() boolean
+    +instantiate()Predicate
+}
+class Operator {
+    +int$: lastID
+    +Predicate: name
+    +List&lt;Predicate&gt;: ifList
+    +List&lt;Predicate&gt;: addList
+    +List&lt;Predicate&gt;: delList
+    +Operator() Operator
+    +toString() String
+    +renamed() Operator
+    +rename() Operator
+    +applyForward() List Predicate
+    +applyBackward() List Predicate
+}
+class Planner {
+    +List&lt;Operator&gt;: operators
+    +List&lt;Predicate&gt;: init
+    +List&lt;Predicate&gt;: goal
+    +solve*()
+}
+class ForwardPlanner
+class BlockWorldProblem
+class Problem {
+    + Predicate initialState()
+    + Predicate goalState()
+    + Operator operators()
+    
+}
+class Matcher {
+    +satisfy() List Bind
+    +satisfyPartially() List Bind
+    +match$() void
+
+
+}
+class Node {
+    +int$ : lastID
+    +int : id
+    +Node : parent
+    +Operator : operator
+    +Bind : bind
+    +List&lt;Predicate&gt; : goal
+    +List&lt;Predicate&gt; + state
+    +Node()
+    +toString() String
+    +depth() int
+    +toPlan() List Operator
+}
+class Utils {
+    +int$ : count
+    +list()$ List Predicate
+    +isGround()$ boolean
+    +concat()$ List
+    +_if()$ List
+    +add()$ List
+    +del()$ List
+    +println()$ void
+
+}
+Problem o.. BlockWorldProblem : interface
+Planner <|-- ForwardPlanner : extends
+Node <|-- Operator
+Node <|-- Predicate
+Bind <|-- Predicate
+Operator <|-- Predicate
+Planner <|-- Operator
+Planner <|-- Predicate
+Problem <|-- Operator
+Problem <|-- Predicate
+Matcher <|-- Predicate
+Matcher <|-- Bind
+Operator <|-- Utils
+Predicate <|-- Utils
+Bind <|-- Utils
+</div></code></pre>
+<h4 id="3%E8%AA%B2%E9%A1%8C2a4">3.課題2a4</h4>
+<pre class="hljs"><code><div>猿とバナナ問題を表現するための MonkeyBananaProblem クラスを作成せよ．Problem クラスを継承せ
+よ．また，課題 2a3 で写経した前向きプランナを用いて解け．
+</div></code></pre>
+<p>#####　実行例
+以下はクラスEX4を実行した結果です.</p>
+<pre class="hljs"><code><div>***** This is a plan! *****
+#1: go to C for Box
+#2: push Box to B
+#3: climb up Box
+#4: grasp Banana
+FinalVisitingNodeNumber:341
+</div></code></pre>
+<p>#####　説明
+Problemクラスを継承して新しく猿とバナナ問題を解くオペレータを設定しました。
+オペレータは以下の通りです。</p>
+<pre class="hljs"><code><div>// OPERATOR 1
+new Operator(&quot;#1: go to ?y for ?b&quot;,
+        _if(&quot;Monkey at ?x&quot;, &quot;Monkey in Low&quot;, &quot;?b at ?y&quot;),
+        add(&quot;Monkey at ?y&quot;),
+        del(&quot;Monkey at ?x&quot;)),
+
+// OPERATOR 2
+new Operator(&quot;#2: push Box to ?y&quot;,
+        _if(&quot;Monkey at ?x&quot;, &quot;Monkey in Low&quot;, &quot;Box at ?x&quot;, &quot;?b at ?y&quot;),
+        add(&quot;Monkey at ?y&quot;, &quot;Box at ?y&quot;),
+        del(&quot;Monkey at ?x&quot;, &quot;Box at ?x&quot;)),
+
+// OPERATOR 3
+new Operator(&quot;#3: climb up Box&quot;,
+        _if(&quot;Monkey at ?x&quot;, &quot;Box at ?x&quot;, &quot;Monkey in Low&quot;),
+        add(&quot;Monkey in High&quot;),
+        del(&quot;Monkey in Low&quot;)),
+
+new Operator(&quot;#4: grasp Banana&quot;,
+        _if(&quot;Monkey in High&quot;, &quot;Monkey at ?x&quot;, &quot;Banana at ?x&quot;),
+        add(&quot;Monkey has Banana&quot;),
+        del())
+</div></code></pre>
+<p>主語は猿とバナナと箱を持ち、位置はABC、加えて高さの概念もあり、猿は箱の上に乗ることでバナナと同じ高さに移動することができ、そのときの位置がバナナと同じであればバナナを入手できる設定となっています。</p>
+<h4 id="3%E8%AA%B2%E9%A1%8C2a5">3.課題2a5</h4>
+<pre class="hljs"><code><div>リスト 11 を編集して後ろ向きプランナを作成し，猿とバナナ問題を解け．クラス名を BackwardPlanner
+とせよ．メインクラスを EX5 とせよ．プログラム提出用のディレクトリ名を ex2a5 とせよ．本課題の実行
+に必要な全プログラムをこのディレクトリに格納すること．
+</div></code></pre>
+<p>#####　実行例</p>
+<pre class="hljs"><code><div>visit (0) [Monkey has Banana]
+-&gt;
+(1) #4: grasp Banana
+-------------------
+visit (1) [Monkey in High, Monkey at ?x_4, Banana at ?x_4, Banana in high]
+-&gt;
+(2) #1: go to ?x_4 for ?b_5
+(3) #2: push Box to ?x_4
+(4) #3: climb up Box
+-------------------
+'
+'
+'
+***** This is a plan! *****
+#4: grasp Banana
+#1: go to ?x_4 for ?b_5
+#1: go to ?x_5 for ?b_9
+FinalVisitingNodeNumber:6
+</div></code></pre>
+<p>#####　説明
+後ろ向き推論では&quot;Monkey has Banana&quot;となりうることを仮定して初期状態まで戻ることができれば仮定が正しいとする推論なのでその推論仮定は、</p>
+<pre class="hljs"><code><div>&quot;Monkey has Banana&quot;
+-&gt;&quot;Monkey in High&quot;, &quot;Monkey at ?x&quot;, &quot;Banana at ?x&quot;, &quot;Banana in high&quot;
+-&gt;&quot;Monkey in Low&quot;, &quot;Monkey at ?x&quot;, &quot;Box at ?x&quot;, &quot;Banana at ?x&quot;, &quot;Banana in high&quot;
+-&gt;&quot;Monkey in Low&quot;, &quot;Monkey at C&quot;, &quot;Box at C&quot;, &quot;Banana at B&quot;, &quot;Banana in high&quot;
+-&gt;&quot;Monkey in Low&quot;, &quot;Monkey at A&quot;, &quot;Box at C&quot;, &quot;Banana at B&quot;, &quot;Banana in high&quot;
+</div></code></pre>
+<p>となることで初期状態に到達することができ、仮説は正しかったとなる。
+実行例ではThis is a plan!が表示されているが出力の段階でつまづいてしまい、変数束縛のままプランが表示されるのを修正することができませんでした。
+また手順も３工程では本来到達できないのですが、A、B、Cの座標をごちゃごちゃにしてしまっているため３工程で見つかったことになってしまっています。</p>
+
+</body>
+</html>
